@@ -1,0 +1,826 @@
+{
+ "resultados": {
+  "BFS": {
+   "ruta": [
+    "FP",
+    "CP",
+    "SC",
+    "AC",
+    "CX"
+   ],
+   "costo": 80,
+   "expandidos": 6,
+   "generados": 9,
+   "fmax": 3,
+   "traza": [
+    {
+     "nodo": "FP",
+     "frontera": [
+      "CP"
+     ]
+    },
+    {
+     "nodo": "CP",
+     "frontera": [
+      "SC",
+      "SP",
+      "SS"
+     ]
+    },
+    {
+     "nodo": "SC",
+     "frontera": [
+      "SP",
+      "SS",
+      "AC"
+     ]
+    },
+    {
+     "nodo": "SP",
+     "frontera": [
+      "SS",
+      "AC",
+      "AP"
+     ]
+    },
+    {
+     "nodo": "SS",
+     "frontera": [
+      "AC",
+      "AP",
+      "AS"
+     ]
+    },
+    {
+     "nodo": "AC",
+     "frontera": [
+      "AP",
+      "AS"
+     ]
+    }
+   ],
+   "optimo": false,
+   "tiempo_us": 3.9,
+   "prof": 4,
+   "bstar": 1.1689595161587931
+  },
+  "UCS": {
+   "ruta": [
+    "FP",
+    "CP",
+    "SP",
+    "AP",
+    "CX"
+   ],
+   "costo": 50,
+   "expandidos": 13,
+   "generados": 15,
+   "fmax": 6,
+   "traza": [
+    {
+     "nodo": "FP",
+     "g": 0,
+     "h": 0,
+     "f": 0,
+     "suc": [
+      "CP"
+     ],
+     "frontera": [
+      "CP(5+0)"
+     ]
+    },
+    {
+     "nodo": "CP",
+     "g": 5,
+     "h": 0,
+     "f": 5,
+     "suc": [
+      "SC",
+      "SP",
+      "SS"
+     ],
+     "frontera": [
+      "SC(15+0)",
+      "SP(15+0)",
+      "SS(15+0)"
+     ]
+    },
+    {
+     "nodo": "SC",
+     "g": 15,
+     "h": 0,
+     "f": 15,
+     "suc": [
+      "AC"
+     ],
+     "frontera": [
+      "SP(15+0)",
+      "SS(15+0)",
+      "AC(35+0)"
+     ]
+    },
+    {
+     "nodo": "SP",
+     "g": 15,
+     "h": 0,
+     "f": 15,
+     "suc": [
+      "AP"
+     ],
+     "frontera": [
+      "SS(15+0)",
+      "AP(30+0)",
+      "AC(35+0)"
+     ]
+    },
+    {
+     "nodo": "SS",
+     "g": 15,
+     "h": 0,
+     "f": 15,
+     "suc": [
+      "AS"
+     ],
+     "frontera": [
+      "AP(30+0)",
+      "AS(30+0)",
+      "AC(35+0)"
+     ]
+    },
+    {
+     "nodo": "AP",
+     "g": 30,
+     "h": 0,
+     "f": 30,
+     "suc": [
+      "CX",
+      "MI",
+      "MN"
+     ],
+     "frontera": [
+      "AS(30+0)",
+      "AC(35+0)",
+      "MN(45+0)",
+      "CX(50+0)",
+      "MI(55+0)"
+     ]
+    },
+    {
+     "nodo": "AS",
+     "g": 30,
+     "h": 0,
+     "f": 30,
+     "suc": [
+      "MT",
+      "MV"
+     ],
+     "frontera": [
+      "AC(35+0)",
+      "MT(40+0)",
+      "MN(45+0)",
+      "MV(45+0)",
+      "CX(50+0)",
+      "MI(55+0)"
+     ]
+    },
+    {
+     "nodo": "AC",
+     "g": 35,
+     "h": 0,
+     "f": 35,
+     "suc": [
+      "MC"
+     ],
+     "frontera": [
+      "MT(40+0)",
+      "MC(45+0)",
+      "MN(45+0)",
+      "MV(45+0)",
+      "CX(50+0)",
+      "MI(55+0)"
+     ]
+    },
+    {
+     "nodo": "MT",
+     "g": 40,
+     "h": 0,
+     "f": 40,
+     "suc": [],
+     "frontera": [
+      "MC(45+0)",
+      "MN(45+0)",
+      "MV(45+0)",
+      "CX(50+0)",
+      "MI(55+0)"
+     ]
+    },
+    {
+     "nodo": "MC",
+     "g": 45,
+     "h": 0,
+     "f": 45,
+     "suc": [],
+     "frontera": [
+      "MN(45+0)",
+      "MV(45+0)",
+      "CX(50+0)",
+      "MI(55+0)"
+     ]
+    },
+    {
+     "nodo": "MN",
+     "g": 45,
+     "h": 0,
+     "f": 45,
+     "suc": [],
+     "frontera": [
+      "MV(45+0)",
+      "CX(50+0)",
+      "MI(55+0)"
+     ]
+    },
+    {
+     "nodo": "MV",
+     "g": 45,
+     "h": 0,
+     "f": 45,
+     "suc": [
+      "PB"
+     ],
+     "frontera": [
+      "CX(50+0)",
+      "MI(55+0)",
+      "PB(75+0)"
+     ]
+    },
+    {
+     "nodo": "CX",
+     "g": 50,
+     "h": 0,
+     "f": 50,
+     "suc": [],
+     "meta": true,
+     "frontera": [
+      "MI(55+0)",
+      "PB(75+0)"
+     ]
+    }
+   ],
+   "optimo": true,
+   "tiempo_us": 12.0,
+   "prof": 4,
+   "bstar": 1.5326593403005973
+  },
+  "Greedy": {
+   "ruta": [
+    "FP",
+    "CP",
+    "SC",
+    "AC",
+    "CX"
+   ],
+   "costo": 80,
+   "expandidos": 5,
+   "generados": 8,
+   "fmax": 4,
+   "traza": [
+    {
+     "nodo": "FP",
+     "g": 0,
+     "h": 50,
+     "f": 50,
+     "suc": [
+      "CP"
+     ],
+     "frontera": [
+      "CP(5+45)"
+     ]
+    },
+    {
+     "nodo": "CP",
+     "g": 5,
+     "h": 45,
+     "f": 45,
+     "suc": [
+      "SC",
+      "SP",
+      "SS"
+     ],
+     "frontera": [
+      "SC(15+35)",
+      "SP(15+35)",
+      "SS(15+35)"
+     ]
+    },
+    {
+     "nodo": "SC",
+     "g": 15,
+     "h": 35,
+     "f": 35,
+     "suc": [
+      "AC"
+     ],
+     "frontera": [
+      "AC(35+20)",
+      "SP(15+35)",
+      "SS(15+35)"
+     ]
+    },
+    {
+     "nodo": "AC",
+     "g": 35,
+     "h": 20,
+     "f": 20,
+     "suc": [
+      "CX",
+      "MC"
+     ],
+     "frontera": [
+      "CX(80+0)",
+      "MC(45+30)",
+      "SP(15+35)",
+      "SS(15+35)"
+     ]
+    },
+    {
+     "nodo": "CX",
+     "g": 80,
+     "h": 0,
+     "f": 0,
+     "suc": [],
+     "meta": true,
+     "frontera": [
+      "MC(45+30)",
+      "SP(15+35)",
+      "SS(15+35)"
+     ]
+    }
+   ],
+   "optimo": false,
+   "tiempo_us": 5.5,
+   "prof": 4,
+   "bstar": 1.0912806228734553
+  },
+  "A*_h1": {
+   "ruta": [
+    "FP",
+    "CP",
+    "SP",
+    "AP",
+    "CX"
+   ],
+   "costo": 50,
+   "expandidos": 10,
+   "generados": 14,
+   "fmax": 6,
+   "traza": [
+    {
+     "nodo": "FP",
+     "g": 0,
+     "h": 25.0,
+     "f": 25.0,
+     "suc": [
+      "CP"
+     ],
+     "frontera": [
+      "CP(5+20)"
+     ]
+    },
+    {
+     "nodo": "CP",
+     "g": 5,
+     "h": 20.0,
+     "f": 25.0,
+     "suc": [
+      "SC",
+      "SP",
+      "SS"
+     ],
+     "frontera": [
+      "SC(15+15)",
+      "SP(15+15)",
+      "SS(15+15)"
+     ]
+    },
+    {
+     "nodo": "SC",
+     "g": 15,
+     "h": 15.0,
+     "f": 30.0,
+     "suc": [
+      "AC"
+     ],
+     "frontera": [
+      "SP(15+15)",
+      "SS(15+15)",
+      "AC(35+10)"
+     ]
+    },
+    {
+     "nodo": "SP",
+     "g": 15,
+     "h": 15.0,
+     "f": 30.0,
+     "suc": [
+      "AP"
+     ],
+     "frontera": [
+      "SS(15+15)",
+      "AP(30+10)",
+      "AC(35+10)"
+     ]
+    },
+    {
+     "nodo": "SS",
+     "g": 15,
+     "h": 15.0,
+     "f": 30.0,
+     "suc": [
+      "AS"
+     ],
+     "frontera": [
+      "AP(30+10)",
+      "AS(30+10)",
+      "AC(35+10)"
+     ]
+    },
+    {
+     "nodo": "AP",
+     "g": 30,
+     "h": 10.0,
+     "f": 40.0,
+     "suc": [
+      "CX",
+      "MI",
+      "MN"
+     ],
+     "frontera": [
+      "AS(30+10)",
+      "AC(35+10)",
+      "CX(50+0)",
+      "MN(45+5)",
+      "MI(55+5)"
+     ]
+    },
+    {
+     "nodo": "AS",
+     "g": 30,
+     "h": 10.0,
+     "f": 40.0,
+     "suc": [
+      "MT",
+      "MV"
+     ],
+     "frontera": [
+      "MT(40+5)",
+      "AC(35+10)",
+      "CX(50+0)",
+      "MN(45+5)",
+      "MV(45+5)",
+      "MI(55+5)"
+     ]
+    },
+    {
+     "nodo": "MT",
+     "g": 40,
+     "h": 5.0,
+     "f": 45.0,
+     "suc": [],
+     "frontera": [
+      "AC(35+10)",
+      "CX(50+0)",
+      "MN(45+5)",
+      "MV(45+5)",
+      "MI(55+5)"
+     ]
+    },
+    {
+     "nodo": "AC",
+     "g": 35,
+     "h": 10.0,
+     "f": 45.0,
+     "suc": [
+      "MC"
+     ],
+     "frontera": [
+      "CX(50+0)",
+      "MC(45+5)",
+      "MN(45+5)",
+      "MV(45+5)",
+      "MI(55+5)"
+     ]
+    },
+    {
+     "nodo": "CX",
+     "g": 50,
+     "h": 0.0,
+     "f": 50.0,
+     "suc": [],
+     "meta": true,
+     "frontera": [
+      "MC(45+5)",
+      "MN(45+5)",
+      "MV(45+5)",
+      "MI(55+5)"
+     ]
+    }
+   ],
+   "optimo": true,
+   "tiempo_us": 11.0,
+   "prof": 4,
+   "bstar": 1.4026279414247256
+  },
+  "A*_h2": {
+   "ruta": [
+    "FP",
+    "CP",
+    "SP",
+    "AP",
+    "CX"
+   ],
+   "costo": 50,
+   "expandidos": 6,
+   "generados": 10,
+   "fmax": 5,
+   "traza": [
+    {
+     "nodo": "FP",
+     "g": 0,
+     "h": 50,
+     "f": 50,
+     "suc": [
+      "CP"
+     ],
+     "frontera": [
+      "CP(5+45)"
+     ]
+    },
+    {
+     "nodo": "CP",
+     "g": 5,
+     "h": 45,
+     "f": 50,
+     "suc": [
+      "SC",
+      "SP",
+      "SS"
+     ],
+     "frontera": [
+      "SC(15+35)",
+      "SP(15+35)",
+      "SS(15+35)"
+     ]
+    },
+    {
+     "nodo": "SC",
+     "g": 15,
+     "h": 35,
+     "f": 50,
+     "suc": [
+      "AC"
+     ],
+     "frontera": [
+      "SP(15+35)",
+      "SS(15+35)",
+      "AC(35+20)"
+     ]
+    },
+    {
+     "nodo": "SP",
+     "g": 15,
+     "h": 35,
+     "f": 50,
+     "suc": [
+      "AP"
+     ],
+     "frontera": [
+      "AP(30+20)",
+      "SS(15+35)",
+      "AC(35+20)"
+     ]
+    },
+    {
+     "nodo": "AP",
+     "g": 30,
+     "h": 20,
+     "f": 50,
+     "suc": [
+      "CX",
+      "MI",
+      "MN"
+     ],
+     "frontera": [
+      "CX(50+0)",
+      "SS(15+35)",
+      "AC(35+20)",
+      "MN(45+30)",
+      "MI(55+30)"
+     ]
+    },
+    {
+     "nodo": "CX",
+     "g": 50,
+     "h": 0,
+     "f": 50,
+     "suc": [],
+     "meta": true,
+     "frontera": [
+      "SS(15+35)",
+      "AC(35+20)",
+      "MN(45+30)",
+      "MI(55+30)"
+     ]
+    }
+   ],
+   "optimo": true,
+   "tiempo_us": 6.7,
+   "prof": 4,
+   "bstar": 1.1689595161587931
+  }
+ },
+ "h": {
+  "cero": {
+   "FP": 0,
+   "CP": 0,
+   "SC": 0,
+   "SP": 0,
+   "SS": 0,
+   "AC": 0,
+   "AP": 0,
+   "AS": 0,
+   "MC": 0,
+   "MI": 0,
+   "MN": 0,
+   "MT": 0,
+   "MV": 0,
+   "CX": 0,
+   "PB": 0,
+   "KC": 0,
+   "KP": 0
+  },
+  "kappa": {
+   "FP": 25.0,
+   "CP": 20.0,
+   "SC": 15.0,
+   "SP": 15.0,
+   "SS": 15.0,
+   "AC": 10.0,
+   "AP": 10.0,
+   "AS": 10.0,
+   "MC": 5.0,
+   "MI": 5.0,
+   "MN": 5.0,
+   "MT": 5.0,
+   "MV": 5.0,
+   "CX": 0.0,
+   "PB": 0.0,
+   "KC": 0.0,
+   "KP": 0.0
+  },
+  "capas": {
+   "FP": 50,
+   "CP": 45,
+   "SC": 35,
+   "SP": 35,
+   "SS": 35,
+   "AC": 20,
+   "AP": 20,
+   "AS": 20,
+   "MC": 30,
+   "MI": 30,
+   "MN": 30,
+   "MT": 30,
+   "MV": 30,
+   "CX": 0,
+   "PB": 0,
+   "KC": null,
+   "KP": null
+  }
+ },
+ "hstar": {
+  "FP": 50,
+  "CP": 45,
+  "SC": 65,
+  "SP": 35,
+  "SS": 55,
+  "AC": 45,
+  "AP": 20,
+  "AS": 40,
+  "MC": null,
+  "MI": null,
+  "MN": null,
+  "MT": 30,
+  "MV": null,
+  "CX": 0,
+  "PB": null,
+  "KC": null,
+  "KP": null
+ },
+ "abstracto": {
+  "0->1": 5,
+  "1->2": 10,
+  "2->3": 15,
+  "3->5": 20,
+  "3->4": 10,
+  "4->5": 30,
+  "5->6": 60
+ },
+ "validacion": {
+  "kappa": {
+   "h_meta_cero": true,
+   "admisible": true,
+   "violaciones_admisibilidad": 0,
+   "consistente": true,
+   "violaciones_consistencia": 0,
+   "arcos_revisados": 18
+  },
+  "capas": {
+   "h_meta_cero": true,
+   "admisible": true,
+   "violaciones_admisibilidad": 0,
+   "consistente": true,
+   "violaciones_consistencia": 0,
+   "arcos_revisados": 18
+  }
+ },
+ "arcos": {
+  "FP": {
+   "CP": 5
+  },
+  "CP": {
+   "SC": 10,
+   "SP": 10,
+   "SS": 10
+  },
+  "SC": {
+   "AC": 20
+  },
+  "SP": {
+   "AP": 15
+  },
+  "SS": {
+   "AS": 15
+  },
+  "AC": {
+   "CX": 45,
+   "MC": 10
+  },
+  "AP": {
+   "CX": 20,
+   "MI": 25,
+   "MN": 15
+  },
+  "AS": {
+   "MT": 10,
+   "MV": 15
+  },
+  "MV": {
+   "PB": 30
+  },
+  "MT": {
+   "CX": 30
+  },
+  "CX": {
+   "KC": 60,
+   "KP": 60
+  }
+ },
+ "capa": {
+  "FP": 0,
+  "CP": 1,
+  "SC": 2,
+  "SP": 2,
+  "SS": 2,
+  "AC": 3,
+  "AP": 3,
+  "AS": 3,
+  "MC": 4,
+  "MI": 4,
+  "MN": 4,
+  "MT": 4,
+  "MV": 4,
+  "CX": 5,
+  "PB": 5,
+  "KC": 6,
+  "KP": 6
+ },
+ "nombres": {
+  "FP": "Formulario de pago móvil (vista)",
+  "CP": "Controlador del pago",
+  "SC": "Servicio de integración de cuentas",
+  "SP": "Servicio de integración de pagos",
+  "SS": "Servicio de integración de seguridad",
+  "AC": "API de cuentas",
+  "AP": "API de pagos",
+  "AS": "API de seguridad",
+  "MC": "Microservicio de caché de saldos",
+  "MI": "Microservicio interbancario",
+  "MN": "Microservicio de notificaciones",
+  "MT": "Microservicio de clave dinámica",
+  "MV": "Microservicio de validación biométrica",
+  "PB": "Proveedor biométrico externo",
+  "CX": "Conector al mainframe",
+  "KC": "Programa del core de cuentas",
+  "KP": "Programa del core de pagos"
+ }
+}
