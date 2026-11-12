@@ -18,7 +18,7 @@ E = json.load(open("resultados_escala.json", encoding="utf-8"))
 ARCOS, H2 = C["arcos"], C["h"]["capas"]
 
 
-def nodo(ax, x, y, txt, estilo="normal", r=0.36, fs=10):
+def nodo(ax, x, y, txt, estilo="normal", r=0.40, fs=12.5):
     fc, lw, ls, col = "white", 1.0, "-", "black"
     if estilo == "meta":
         fc, col, lw = "black", "white", 1.5
@@ -33,7 +33,7 @@ def nodo(ax, x, y, txt, estilo="normal", r=0.36, fs=10):
             fontweight="bold")
 
 
-def flecha(ax, p, q, txt=None, grueso=False, r=0.36, fs=9, dx=0.0):
+def flecha(ax, p, q, txt=None, grueso=False, r=0.40, fs=12, dx=0.0, frac=0.5):
     (x1, y1), (x2, y2) = p, q
     d = math.hypot(x2 - x1, y2 - y1)
     ux, uy = (x2 - x1) / d, (y2 - y1) / d
@@ -41,7 +41,7 @@ def flecha(ax, p, q, txt=None, grueso=False, r=0.36, fs=9, dx=0.0):
                 arrowprops=dict(arrowstyle="-|>", lw=2.4 if grueso else 0.9, color="black",
                                 mutation_scale=8 if grueso else 10), zorder=2)
     if txt is not None:
-        ax.text((x1 + x2) / 2 + dx, (y1 + y2) / 2, txt, fontsize=fs, ha="center", va="center",
+        ax.text(x1 + (x2 - x1) * frac + dx, y1 + (y2 - y1) * frac, txt, fontsize=fs, ha="center", va="center",
                 zorder=5, bbox=dict(boxstyle="round,pad=0.12", fc="white", ec="none"))
 
 
@@ -49,36 +49,41 @@ def flecha(ax, p, q, txt=None, grueso=False, r=0.36, fs=9, dx=0.0):
 POS = {"FP": (4, 6), "CP": (4, 5),
        "SC": (1.5, 4), "SP": (4, 4), "SS": (6.5, 4),
        "AC": (1.5, 3), "AP": (4, 3), "AS": (6.5, 3),
-       "MC": (0.3, 2), "MN": (3.75, 2), "MI": (5.1, 2), "MT": (6.4, 2), "MV": (7.9, 2),
-       "CX": (2.0, 0.9), "PB": (7.9, 0.9),
-       "KC": (1.3, -0.2), "KP": (2.7, -0.2)}
+       "MC": (0.2, 2), "MN": (3.6, 2), "MI": (5.0, 2), "MT": (6.5, 2), "MV": (8.0, 2),
+       "CX": (1.6, 0.9), "PB": (8.0, 0.9),
+       "KC": (0.9, -0.2), "KP": (2.3, -0.2)}
 YS = 1.5
 POS = {k: (x, y * YS) for k, (x, y) in POS.items()}
 # Posición de la etiqueta h de cada nodo: a la izquierda donde a la derecha llega una flecha
 IZQ = {"SC", "CX", "PB", "KC"}
-ABAJO = {"MN"}
+ABAJO = {"MC", "MN", "MI", "MT"}
+# Costo del arco MT→CX más cerca de CX, para no chocar con las etiquetas de MN y MI
+FRAC = {("MT", "CX"): 0.75}
+# Costo de AS→MT a la izquierda de la flecha, para no chocar con el de AS→MV
+DX = {("AS", "MT"): -0.38}
 fig, ax = plt.subplots(figsize=(6.0, 5.6))
 for a, hs in ARCOS.items():
     for b, c in hs.items():
         vertical = abs(POS[a][0] - POS[b][0]) < 0.01
-        flecha(ax, POS[a], POS[b], str(c), dx=0.34 if vertical else 0)
+        dx = DX.get((a, b), 0.38 if vertical else 0)
+        flecha(ax, POS[a], POS[b], str(c), dx=dx, frac=FRAC.get((a, b), 0.5))
 for n, (x, y) in POS.items():
     nodo(ax, x, y, n, "meta" if n == "CX" else ("inicial" if n == "FP" else "normal"))
     h = H2[n]
     txt = "h=∞" if h is None else f"h={h:g}"
     if n in ABAJO:
-        xt, yt, ha = x, y - 0.55, "center"
+        xt, yt, ha = x, y - 0.62, "center"
     elif n in IZQ:
-        xt, yt, ha = x - 0.42, y, "right"
+        xt, yt, ha = x - 0.46, y, "right"
     else:
-        xt, yt, ha = x + 0.42, y, "left"
-    ax.text(xt, yt, txt, fontsize=8, ha=ha, va="center", style="italic", zorder=6,
+        xt, yt, ha = x + 0.46, y, "left"
+    ax.text(xt, yt, txt, fontsize=11, ha=ha, va="center", style="italic", zorder=6,
             bbox=dict(boxstyle="round,pad=0.08", fc="white", ec="none"))
 capas = [(6, "0 Vista"), (5, "1 Controlador"), (4, "2 Integración"), (3, "3 Capa media"),
          (2, "4 Microservicios"), (0.9, "5 Conector y\n   externos"), (-0.2, "6 Core")]
 for y, t in capas:
-    ax.text(9.35, y * YS, t, fontsize=9, va="center", ha="left")
-ax.set_xlim(-0.2, 11.9); ax.set_ylim(-0.75 * YS, 6.45 * YS); ax.set_aspect("equal"); ax.axis("off")
+    ax.text(9.6, y * YS, t, fontsize=11.5, va="center", ha="left")
+ax.set_xlim(-0.4, 12.3); ax.set_ylim(-0.75 * YS, 6.45 * YS); ax.set_aspect("equal"); ax.axis("off")
 fig.tight_layout()
 fig.savefig("grafico1_espacio_estados.png", dpi=220, bbox_inches="tight", pad_inches=0.03)
 plt.close(fig)
@@ -110,7 +115,7 @@ def arbol(ax, res, titulo, etiqueta):
 
     def lay(n, d):
         if n not in hijos:
-            pos[n] = (cont[0] * 1.6, -d * 1.25); cont[0] += 1
+            pos[n] = (cont[0] * 2.0, -d * 1.25); cont[0] += 1
         else:
             for h in hijos[n]:
                 lay(h, d + 1)
@@ -125,10 +130,10 @@ def arbol(ax, res, titulo, etiqueta):
             flecha(ax, pos[p], pos[h], None, grueso=(p, h) in en_ruta)
     for n, (x, y) in pos.items():
         est = "meta" if n == "CX" else ("expandido" if n in expandidos else "frontera")
-        nodo(ax, x, y, n, est, fs=8.5)
-        ax.text(x + 0.42, y - 0.22, etiqueta(n), fontsize=7, ha="left", va="center", zorder=6,
+        nodo(ax, x, y, n, est, fs=11)
+        ax.text(x + 0.44, y - 0.24, etiqueta(n), fontsize=10, ha="left", va="center", zorder=6,
                 bbox=dict(boxstyle="round,pad=0.05", fc="white", ec="none"))
-    ax.set_title(titulo, fontsize=9, fontweight="bold")
+    ax.set_title(titulo, fontsize=12, fontweight="bold")
     xs = [p[0] for p in pos.values()]; ys = [p[1] for p in pos.values()]
     ax.set_xlim(min(xs) - 0.6, max(xs) + 1.2); ax.set_ylim(min(ys) - 0.6, 0.6)
     ax.set_aspect("equal"); ax.axis("off")
